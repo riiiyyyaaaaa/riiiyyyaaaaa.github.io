@@ -1,805 +1,1859 @@
-import React, { useState, useEffect } from 'react';
-import { BarChart3, Code, Database, TrendingUp, Mail, Linkedin, Github, Phone, ChevronDown, Award, Briefcase, GraduationCap, Calendar, MapPin, CheckCircle, ArrowRight, Target, Users, FileText, Zap, BookOpen, Star } from 'lucide-react';
-
-export default function Portfolio() {
-  const [activeSection, setActiveSection] = useState('home');
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-      
-      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 150 && rect.bottom >= 150;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Riya Shah - Data Analytics Professional specializing in Power BI, Excel, and SQL">
+    <title>Riya Shah - Data Analytics Professional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        return false;
-      });
-      if (current) setActiveSection(current);
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const projects = [
-    {
-      title: "Call Center Dashboard",
-      subtitle: "Excel & Power Query Analytics",
-      tech: "Excel • Power Query • Pivot Tables • VBA",
-      description: "Engineered a comprehensive call center analytics dashboard transforming raw data into actionable insights for operational excellence.",
-      challenge: "The call center was struggling with manual data processing, taking hours to generate reports and lacking visibility into real-time performance metrics.",
-      solution: "Built an automated Excel dashboard using Power Query for data transformation and Pivot Tables for dynamic analysis, enabling instant insights.",
-      highlights: [
-        {
-          title: "40% Efficiency Gain",
-          desc: "Automated data cleaning and reporting processes, eliminating manual errors"
-        },
-        {
-          title: "Customer Satisfaction",
-          desc: "Analyzed satisfaction trends across 1,000+ calls to identify improvement areas"
-        },
-        {
-          title: "Performance Metrics",
-          desc: "Tracked agent performance, call duration patterns, and resolution rates"
-        },
-        {
-          title: "Purchase Behavior",
-          desc: "Correlated call quality with purchase decisions and customer retention"
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #334155;
+            background: white;
         }
-      ],
-      impact: "The dashboard reduced reporting time from 4 hours to 15 minutes and enabled data-driven decisions that improved customer satisfaction by 23%.",
-      skills: ["Excel", "Power Query", "Pivot Tables", "Data Visualization", "Process Automation"],
-      metrics: ["40% Time Saved", "1000+ Calls Analyzed", "23% Satisfaction Increase"]
-    },
-    {
-      title: "Farmers Market Dashboard",
-      subtitle: "Multi-Page Power BI Solution",
-      tech: "Power BI • DAX • Power Query • Data Modeling",
-      description: "Developed a three-tier Power BI dashboard providing comprehensive insights for farmers market stakeholders from executives to operational managers.",
-      challenge: "Market administrators needed to track diverse metrics across vendors, products, and customers but lacked a unified view of market health and performance.",
-      solution: "Created an interactive Power BI solution with three specialized pages: Overview for executives, Sales & Trends for analysts, and Customer Insights for marketing.",
-      highlights: [
-        {
-          title: "Executive Overview",
-          desc: "Real-time KPIs tracking total sales, unique customers, vendors, and booth utilization"
-        },
-        {
-          title: "Sales Intelligence",
-          desc: "Performance analysis by product category, vendor, and seasonal trends"
-        },
-        {
-          title: "Customer Analytics",
-          desc: "Geographic demand patterns, buying behavior, and segmentation analysis"
-        },
-        {
-          title: "Advanced DAX",
-          desc: "Complex measures for YoY growth, market share, and profitability calculations"
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-      ],
-      impact: "Enabled data-driven vendor recruitment strategies and optimized product mix, resulting in 15% revenue growth quarter-over-quarter.",
-      skills: ["Power BI", "DAX", "Power Query", "Data Modeling", "Business Intelligence"],
-      metrics: ["3 Dashboard Pages", "9 Vendors Tracked", "29 Unique Customers"]
-    },
-    {
-      title: "Superstore Sales Analysis",
-      subtitle: "Enterprise BI Solution",
-      tech: "Power BI • SQL • DAX • Advanced Analytics",
-      description: "Architected a comprehensive enterprise dashboard providing 360° visibility into sales performance, profitability, and growth trends across regions and categories.",
-      challenge: "The superstore had fragmented data across multiple systems with no unified view of business performance, making strategic planning difficult.",
-      solution: "Built a three-page Power BI solution integrating data from multiple sources, featuring executive KPIs, trend analysis, and deep-dive customer insights.",
-      highlights: [
-        {
-          title: "Executive Dashboard",
-          desc: "Key metrics including sales (₹283K), profit (₹34.7K), orders (1358), and YoY growth tracking"
-        },
-        {
-          title: "Trend Analysis",
-          desc: "Time-series analysis identifying seasonal patterns and category performance drivers"
-        },
-        {
-          title: "Regional Intelligence",
-          desc: "Geographic breakdown with profitability analysis across all regions"
-        },
-        {
-          title: "Customer Segmentation",
-          desc: "Detailed analysis of buying patterns by customer segment and product category"
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #0f172a;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
-      ],
-      impact: "Identified underperforming regions and categories, enabling targeted interventions that improved overall profit margin by 0.12%.",
-      skills: ["Power BI", "DAX", "SQL", "Data Analysis", "Business Intelligence", "Statistical Analysis"],
-      metrics: ["₹283K Sales", "1358 Orders", "12% Profit Margin"]
-    },
-    {
-      title: "Sales & Inventory Optimization",
-      subtitle: "Predictive Analytics & Forecasting",
-      tech: "Python • ARIMA • Statistical Modeling • ML",
-      description: "Implemented advanced statistical models to forecast demand and optimize inventory levels, reducing stockouts while minimizing carrying costs.",
-      challenge: "The business faced frequent stockouts of popular items and excess inventory of slow-moving SKUs, tying up capital and losing sales.",
-      solution: "Developed ARIMA forecasting models and conducted price elasticity analysis to optimize inventory levels and pricing strategies.",
-      highlights: [
-        {
-          title: "ARIMA Forecasting",
-          desc: "Built time-series models achieving 85% accuracy in demand prediction"
-        },
-        {
-          title: "Price Elasticity",
-          desc: "Analyzed SKU-level price sensitivity to optimize pricing strategy"
-        },
-        {
-          title: "Inventory Strategy",
-          desc: "Recommended optimal stock levels balancing availability and carrying costs"
-        },
-        {
-          title: "Strategic Planning",
-          desc: "Provided data-driven recommendations for procurement and pricing decisions"
+
+        nav.scrolled {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-      ],
-      impact: "Reduced inventory carrying costs by 22% while improving product availability from 87% to 96%, significantly enhancing customer satisfaction.",
-      skills: ["Python", "ARIMA", "Statistical Analysis", "Machine Learning", "Forecasting", "Pandas", "NumPy"],
-      metrics: ["85% Accuracy", "22% Cost Reduction", "96% Availability"]
-    }
-  ];
 
-  const skills = {
-    "Programming & Databases": {
-      icon: <Code className="text-slate-700" size={28} />,
-      items: [
-        { name: "Python", level: 85, desc: "Data analysis, automation, ML" },
-        { name: "SQL (MySQL)", level: 80, desc: "Complex queries, optimization" },
-        { name: "JavaScript", level: 75, desc: "Interactive visualizations" },
-        { name: "Java", level: 70, desc: "Object-oriented programming" }
-      ]
-    },
-    "Data Visualization": {
-      icon: <BarChart3 className="text-slate-700" size={28} />,
-      items: [
-        { name: "Power BI", level: 90, desc: "DAX, complex dashboards" },
-        { name: "Tableau", level: 75, desc: "Interactive storytelling" },
-        { name: "Advanced Excel", level: 95, desc: "Power Query, Pivot Tables" },
-        { name: "Matplotlib/Seaborn", level: 80, desc: "Python visualization" }
-      ]
-    },
-    "Analytics & Tools": {
-      icon: <Database className="text-slate-700" size={28} />,
-      items: [
-        { name: "Power Query", level: 90, desc: "Data transformation, ETL" },
-        { name: "Power Pivot", level: 85, desc: "Data modeling" },
-        { name: "Statistical Analysis", level: 80, desc: "ARIMA, forecasting" },
-        { name: "CRM Systems", level: 75, desc: "Data management" }
-      ]
-    },
-    "Additional Skills": {
-      icon: <Zap className="text-slate-700" size={28} />,
-      items: [
-        { name: "Git/GitHub", level: 80, desc: "Version control" },
-        { name: "Agile Methodology", level: 75, desc: "Project management" },
-        { name: "Business Intelligence", level: 85, desc: "Strategic insights" },
-        { name: "Data Storytelling", level: 88, desc: "Clear communication" }
-      ]
-    }
-  };
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
 
-  const experience = {
-    title: "Operation Intern",
-    company: "Internship Cell IIT Madras",
-    location: "Tamil Nadu, India",
-    period: "Oct 2024 - May 2025",
-    type: "Full-time Internship",
-    description: "Leading data operations and analytics initiatives for student onboarding processes at one of India's premier institutions.",
-    responsibilities: [
-      {
-        title: "Database Management & ERP Systems",
-        desc: "Maintained and updated comprehensive student databases using MS Excel and internal ERP systems, ensuring data accuracy and integrity across 500+ student records",
-        icon: <Database size={20} className="text-slate-700" />
-      },
-      {
-        title: "Process Optimization & IT Coordination",
-        desc: "Collaborated with IT department to streamline student onboarding workflows, reducing processing time by 30% through automation and system improvements",
-        icon: <Zap size={20} className="text-slate-700" />
-      },
-      {
-        title: "CRM Implementation & Management",
-        desc: "Utilized CRM tools to track, manage, and analyze student queries and follow-ups, improving response time by 45% and increasing satisfaction rates",
-        icon: <Users size={20} className="text-slate-700" />
-      },
-      {
-        title: "Data Privacy & Compliance",
-        desc: "Monitored compliance with data privacy standards during document verification and record management, ensuring 100% adherence to institutional policies",
-        icon: <CheckCircle size={20} className="text-slate-700" />
-      },
-      {
-        title: "Analytics & Reporting",
-        desc: "Generated and analyzed periodic reports on student onboarding metrics using advanced Excel, providing actionable insights that improved process efficiency by 25%",
-        icon: <FileText size={20} className="text-slate-700" />
-      }
-    ],
-    achievements: [
-      "Improved data accuracy from 92% to 99.5%",
-      "Reduced onboarding time by 30%",
-      "Increased query response rate by 45%",
-      "Maintained 100% compliance record"
-    ]
-  };
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
 
-  const education = [
-    {
-      degree: "Bachelor of Science in Data Science and Programming",
-      institution: "Indian Institute of Technology Madras",
-      location: "Tamil Nadu, India",
-      period: "2022 - 2025",
-      cgpa: "7.1 CGPA",
-      grade: "First Class",
-      type: "Full-time",
-      highlights: [
-        "Specialization in Data Science, Machine Learning, and Statistical Analysis",
-        "Completed projects in predictive modeling, data visualization, and business analytics",
-        "Relevant coursework: Statistics, Database Systems, Machine Learning, Data Structures"
-      ]
-    },
-    {
-      degree: "Bachelor of Arts",
-      institution: "Eklavya University",
-      location: "Madhya Pradesh, India",
-      period: "2020 - 2023",
-      cgpa: "8.9 CGPA",
-      grade: "First Class with Distinction",
-      type: "Full-time",
-      highlights: [
-        "Graduated with distinction, demonstrating strong academic performance",
-        "Developed analytical and critical thinking skills through diverse coursework",
-        "Active participation in academic seminars and research activities"
-      ]
-    },
-    {
-      degree: "Senior Secondary (12th Class)",
-      institution: "Gyanodaya Vidya Mandir, Narsinghgarh",
-      board: "Central Board of Secondary Education (CBSE)",
-      location: "Madhya Pradesh, India",
-      period: "2019 - 2020",
-      cgpa: "7.6 CGPA",
-      grade: "First Class",
-      highlights: [
-        "Strong foundation in mathematics and analytical subjects",
-        "Developed problem-solving and logical reasoning skills"
-      ]
-    }
-  ];
+        nav.scrolled .logo {
+            color: #0f172a;
+        }
 
-  const certifications = [
-    { name: "Advanced Excel for Data Analysis", issuer: "LinkedIn Learning", year: "2024" },
-    { name: "Power BI Data Analyst", issuer: "Microsoft", year: "2024" },
-    { name: "SQL for Data Science", issuer: "Coursera", year: "2023" }
-  ];
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white shadow-md border-b border-gray-200' 
-          : 'bg-slate-900'
-      }`}>
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className={`text-2xl font-bold transition-all duration-300 ${
-              scrolled ? 'text-slate-900' : 'text-white'
-            }`}>
-              Riya Shah
-            </h1>
-            <div className="hidden md:flex space-x-1">
-              {['Home', 'About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
-                    activeSection === item.toLowerCase()
-                      ? scrolled
-                        ? 'bg-slate-900 text-white'
-                        : 'bg-white/10 text-white'
-                      : scrolled 
-                        ? 'text-gray-700 hover:bg-gray-100' 
-                        : 'text-white/70 hover:bg-white/10'
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
+        .nav-menu a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        nav.scrolled .nav-menu a {
+            color: #334155;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        nav.scrolled .nav-menu a:hover {
+            background: #f1f5f9;
+        }
+
+        nav.scrolled .nav-menu a.active {
+            background: #0f172a;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #d1d5db;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #0f172a;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: white;
+            color: #0f172a;
+            transform: scale(1.1);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-tag {
+            color: #64748b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin: 10px 0 20px;
+            font-weight: 700;
+        }
+
+        .section-desc {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8fafc;
+        }
+
+        .about-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .about-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #334155;
+        }
+
+        .about-box strong {
+            color: #0f172a;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .about-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .about-card i {
+            font-size: 2.5rem;
+            color: #334155;
+            margin-bottom: 15px;
+        }
+
+        .about-card h3 {
+            font-size: 1.3rem;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .about-card p {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .card-metric {
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.9rem;
+        }
+
+        /* Experience Section */
+        .exp-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .exp-header {
+            background: #0f172a;
+            color: white;
+            padding: 30px;
+        }
+
+        .exp-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .exp-title h3 {
+            font-size: 1.5rem;
+        }
+
+        .exp-company {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            margin-bottom: 15px;
+        }
+
+        .exp-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        .exp-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .exp-desc {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #d1d5db;
+            line-height: 1.7;
+        }
+
+        .exp-body {
+            padding: 30px;
+        }
+
+        .exp-body h4 {
+            font-size: 1.2rem;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+
+        .resp-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .resp-item i {
+            color: #334155;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .resp-content h5 {
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .resp-content p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .achievements {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .achievements h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .ach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .ach-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ach-item i {
+            color: #334155;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: #f8fafc;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-header {
+            background: #0f172a;
+            color: white;
+            padding: 30px;
+        }
+
+        .project-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            margin-bottom: 10px;
+        }
+
+        .project-tech {
+            color: #9ca3af;
+            margin-bottom: 15px;
+        }
+
+        .project-metrics {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .metric-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .project-body {
+            padding: 30px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .project-section h4 {
+            font-size: 1.1rem;
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .project-section p {
+            color: #334155;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .highlights {
+            display: grid;
+            gap: 12px;
+        }
+
+        .highlight-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .highlight-item h5 {
+            color: #0f172a;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .highlight-item p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .impact-box {
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .impact-box h4 {
+            margin-bottom: 10px;
+        }
+
+        .impact-box p {
+            margin: 0;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: #0f172a;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .skill-cat {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .skill-cat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .skill-cat-header i {
+            font-size: 1.8rem;
+            color: #334155;
+        }
+
+        .skill-cat-header h3 {
+            font-size: 1.4rem;
+            color: #0f172a;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .skill-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-left: 5px;
+        }
+
+        .skill-percent {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: #0f172a;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .certs {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .certs h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            color: #0f172a;
+            margin-bottom: 25px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-item {
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .cert-item h4 {
+            color: #0f172a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .cert-issuer {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .cert-year {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        /* Education Section */
+        .education {
+            background: #f8fafc;
+        }
+
+        .edu-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .edu-header {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .edu-info {
+            flex: 1;
+        }
+
+        .edu-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .edu-title i {
+            font-size: 1.8rem;
+        }
+
+        .edu-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .edu-institution {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            margin-bottom: 5px;
+        }
+
+        .edu-board {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        .edu-details {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+        }
+
+        .edu-details span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .edu-type {
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+
+        .edu-grade {
+            text-align: right;
+        }
+
+        .edu-cgpa {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .edu-grade-text {
+            font-size: 0.85rem;
+            color: #d1d5db;
+        }
+
+        .edu-body {
+            padding: 25px;
+        }
+
+        .edu-highlights {
+            list-style: none;
+        }
+
+        .edu-highlights li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #334155;
+        }
+
+        .edu-highlights i {
+            color: #334155;
+            margin-top: 3px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-desc {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            margin-bottom: 15px;
+        }
+
+        .contact-text {
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .contact-card:hover {
+            background: white;
+            color: #0f172a;
+            transform: translateY(-5px);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-card-text {
+            font-size: 0.9rem;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .contact-social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-social-link:hover {
+            background: white;
+            color: #0f172a;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #020617;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .footer-brand p {
+            color: #9ca3af;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 25px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .about-cards,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edu-header {
+                flex-direction: column;
+            }
+
+            .edu-grade {
+                text-align: left;
+                margin-top: 15px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-content">
+            <div class="logo">Riya Shah</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Available for Opportunities</div>
+            <h1>Riya Shah</h1>
+            <h2>Data Analytics Professional</h2>
+            <p class="hero-desc">Transforming Complex Data into Strategic Business Insights</p>
+            <p class="hero-text">
+                Specialized in Power BI, Advanced Excel, and SQL. Passionate about driving data-driven decisions 
+                through compelling visualizations and actionable analytics.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    View My Work <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
-          </div>
+            <div class="social-links">
+                <a href="mailto:riyashah9095@gmail.com" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/22f1000952" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="tel:6265008937" class="social-link">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
         </div>
-      </nav>
+    </section>
 
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center bg-slate-900 text-white relative">
-        <div className="max-w-5xl mx-auto px-6 text-center z-10">
-          <div className="mb-6">
-            <span className="bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium border border-white/20">
-              Available for Opportunities
-            </span>
-          </div>
-          
-          <h1 className="text-7xl md:text-8xl font-bold mb-6 tracking-tight">
-            Riya Shah
-          </h1>
-          
-          <p className="text-2xl font-light text-gray-300 mb-6">Data Analytics Professional</p>
-          
-          <p className="text-xl mb-4 max-w-3xl mx-auto leading-relaxed text-gray-300">
-            Transforming Complex Data into Strategic Business Insights
-          </p>
-          
-          <p className="text-lg mb-12 max-w-2xl mx-auto leading-relaxed text-gray-400">
-            Specialized in Power BI, Advanced Excel, and SQL • Passionate about driving data-driven decisions 
-            through compelling visualizations and actionable analytics
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <button 
-              onClick={() => scrollToSection('projects')}
-              className="bg-white text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all flex items-center space-x-2"
-            >
-              <span>View My Work</span>
-              <ArrowRight size={20} />
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition-all"
-            >
-              Get In Touch
-            </button>
-          </div>
-          
-          <div className="flex justify-center space-x-6">
-            {[
-              { icon: Mail, href: "mailto:riyashah9095@gmail.com", label: "Email" },
-              { icon: Linkedin, href: "https://linkedin.com/in/riya-shah-517883231", label: "LinkedIn" },
-              { icon: Github, href: "https://github.com/22f1000952", label: "GitHub" },
-              { icon: Phone, href: "tel:6265008937", label: "Phone" }
-            ].map((social, index) => (
-              <a 
-                key={index}
-                href={social.href}
-                target={social.href.startsWith('http') ? "_blank" : undefined}
-                rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                className="bg-white/10 backdrop-blur-sm p-4 rounded-full hover:bg-white hover:text-slate-900 transition-all border border-white/20"
-                aria-label={social.label}
-              >
-                <social.icon size={24} />
-              </a>
-            ))}
-          </div>
-        </div>
-        
-        <button 
-          onClick={() => scrollToSection('about')} 
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white"
-        >
-          <ChevronDown size={40} />
-        </button>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">About Me</span>
-            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
-              Turning Data Into Decisions
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              I'm a data analytics professional with a passion for uncovering insights that drive business growth
-            </p>
-          </div>
-
-          <div className="bg-white rounded-2xl p-10 shadow-lg mb-12 border border-gray-200">
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              With a strong foundation in <span className="font-semibold text-slate-900">Business Intelligence</span>, 
-              <span className="font-semibold text-slate-900"> Data Visualization</span>, and 
-              <span className="font-semibold text-slate-900"> Analytics</span>, I specialize in transforming raw data 
-              into compelling narratives that empower stakeholders to make informed, strategic decisions.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              My experience spans across <span className="font-semibold">Excel automation</span>, 
-              <span className="font-semibold"> Power BI dashboard development</span>, 
-              <span className="font-semibold"> SQL database management</span>, and 
-              <span className="font-semibold"> predictive analytics</span>. I've successfully delivered projects 
-              that have improved operational efficiency by up to 40% and driven revenue growth through data-driven insights.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Currently pursuing my Bachelor's in Data Science from <span className="font-semibold">IIT Madras</span> 
-              while gaining practical experience as an Operations Intern, I bring both theoretical knowledge and 
-              hands-on expertise to every project I undertake.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: <Target className="text-slate-700" size={40} />,
-                title: "Business Intelligence",
-                desc: "Creating interactive dashboards and reports that provide real-time visibility into business metrics and KPIs",
-                metrics: "4+ Projects Delivered"
-              },
-              {
-                icon: <TrendingUp className="text-slate-700" size={40} />,
-                title: "Data Analytics",
-                desc: "Applying statistical methods and machine learning to uncover patterns, trends, and predictive insights",
-                metrics: "85% Forecast Accuracy"
-              },
-              {
-                icon: <Zap className="text-slate-700" size={40} />,
-                title: "Process Optimization",
-                desc: "Streamlining workflows through automation and data-driven process improvements",
-                metrics: "40% Efficiency Gains"
-              }
-            ].map((item, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-200">
-                <div className="mb-4">{item.icon}</div>
-                <h3 className="text-xl font-bold mb-3 text-slate-900">{item.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{item.desc}</p>
-                <div className="pt-4 border-t border-gray-200">
-                  <span className="text-sm font-semibold text-slate-700">{item.metrics}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Professional Journey</span>
-            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
-              Work Experience
-            </h2>
-          </div>
-
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200">
-            <div className="bg-slate-900 p-8 text-white rounded-t-2xl">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-3 mb-2">
-                    <Briefcase size={28} />
-                    <h3 className="text-2xl font-bold">{experience.title}</h3>
-                  </div>
-                  <p className="text-xl font-semibold text-gray-300 mb-2">{experience.company}</p>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-400">
-                    <div className="flex items-center space-x-2">
-                      <Calendar size={16} />
-                      <span>{experience.period}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <MapPin size={16} />
-                      <span>{experience.location}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <Briefcase size={16} />
-                      <span>{experience.type}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-6 text-lg text-gray-300 leading-relaxed">
-                {experience.description}
-              </p>
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Turning Data Into Decisions</h2>
+                <p class="section-desc">
+                    A data analytics professional passionate about uncovering insights that drive business growth
+                </p>
             </div>
 
-            <div className="p-8">
-              <h4 className="text-xl font-bold mb-6 text-slate-900">Key Responsibilities & Impact</h4>
-              <div className="space-y-4">
-                {experience.responsibilities.map((resp, index) => (
-                  <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
-                    <div className="flex-shrink-0 mt-1">
-                      {resp.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h5 className="font-semibold text-slate-900 mb-2">{resp.title}</h5>
-                      <p className="text-gray-600 leading-relaxed">{resp.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
-                <h4 className="text-lg font-bold mb-4 text-slate-900 flex items-center">
-                  <Star className="text-slate-700 mr-2" size={24} />
-                  Key Achievements
-                </h4>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {experience.achievements.map((achievement, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <CheckCircle className="text-slate-700 flex-shrink-0" size={18} />
-                      <span className="text-gray-700">{achievement}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div class="about-box">
+                <p>
+                    With a strong foundation in <strong>Business Intelligence</strong>, 
+                    <strong>Data Visualization</strong>, and <strong>Analytics</strong>, 
+                    I specialize in transforming raw data into compelling narratives that empower stakeholders to make informed, strategic decisions.
+                </p>
+                <p>
+                    My experience spans <strong>Excel automation</strong>, <strong>Power BI dashboard development</strong>, 
+                    <strong>SQL database management</strong>, and <strong>predictive analytics</strong>. 
+                    I have successfully delivered projects that improved operational efficiency by up to 40% and driven revenue growth through data-driven insights.
+                </p>
+                <p>
+                    Currently pursuing my Bachelor's in Data Science from <strong>IIT Madras</strong> while gaining practical 
+                    experience as an Operations Intern, I bring both theoretical knowledge and hands-on expertise to every project.
+                </p>
             </div>
-          </div>
+
+            <div class="about-cards">
+                <div class="about-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Business Intelligence</h3>
+                    <p>Creating interactive dashboards and reports that provide real-time visibility into business metrics and KPIs</p>
+                    <div class="edu-grade">
+                        <div class="edu-cgpa">7.6</div>
+                        <div class="edu-grade-text">CGPA</div>
+                        <div class="edu-grade-text">First Class</div>
+                    </div>
+                </div>
+                <div class="edu-body">
+                    <ul class="edu-highlights">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Strong foundation in mathematics and analytical subjects</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Developed problem-solving and logical reasoning skills</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
-            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
-              Featured Projects
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real-world analytics solutions delivering measurable business impact
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Create Something Amazing</h2>
+            </div>
+            <p class="contact-desc">Ready to turn your data into actionable insights?</p>
+            <p class="contact-text">
+                I'm currently open to full-time opportunities, freelance projects, and collaborations. 
+                Let's discuss how data analytics can drive your business forward.
             </p>
-          </div>
 
-          <div className="space-y-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all">
-                <div className="bg-slate-900 p-8 text-white rounded-t-2xl">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
-                      <p className="text-xl font-semibold text-gray-300 mb-3">{project.subtitle}</p>
-                      <p className="text-gray-400 mb-4">{project.tech}</p>
-                      <div className="flex flex-wrap gap-3">
-                        {project.metrics.map((metric, i) => (
-                          <span key={i} className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium border border-white/20">
-                            {metric}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div class="contact-grid">
+                <a href="mailto:riyashah9095@gmail.com" class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <p class="contact-card-title">Email Me</p>
+                    <p class="contact-card-text">riyashah9095@gmail.com</p>
+                </a>
+                <a href="tel:6265008937" class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <p class="contact-card-title">Call Me</p>
+                    <p class="contact-card-text">+91 6265008937</p>
+                </a>
+            </div>
 
-                <div className="p-8">
-                  <div className="grid md:grid-cols-2 gap-8 mb-6">
-                    <div>
-                      <h4 className="text-lg font-bold mb-3 text-slate-900">Overview</h4>
-                      <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
-                      
-                      <h4 className="text-lg font-bold mb-3 text-slate-900">Challenge</h4>
-                      <p className="text-gray-700 leading-relaxed mb-6">{project.challenge}</p>
-                      
-                      <h4 className="text-lg font-bold mb-3 text-slate-900">Solution</h4>
-                      <p className="text-gray-700 leading-relaxed">{project.solution}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-lg font-bold mb-4 text-slate-900">Key Highlights</h4>
-                      <div className="space-y-4">
-                        {project.highlights.map((highlight, i) => (
-                          <div key={i} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                            <h5 className="font-semibold text-slate-900 mb-2">{highlight.title}</h5>
-                            <p className="text-sm text-gray-600 leading-relaxed">{highlight.desc}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6 bg-gray-50 rounded-xl border border-gray-200 mb-6">
-                    <h4 className="text-lg font-bold mb-3 text-slate-900">Business Impact</h4>
-                    <p className="text-gray-700 leading-relaxed">{project.impact}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wider">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.skills.map((skill, i) => (
-                        <span key={i} className="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            <div class="contact-social">
+                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="contact-social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/22f1000952" target="_blank" class="contact-social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
         </div>
-      </section>
+    </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Expertise</span>
-            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
-              Technical Skills
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive toolkit for end-to-end data analytics and business intelligence
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {Object.entries(skills).map(([category, data], index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-                <div className="flex items-center mb-6">
-                  {data.icon}
-                  <h3 className="text-2xl font-bold ml-3 text-slate-900">{category}</h3>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Riya Shah</h3>
+                    <p>Data Analytics Professional</p>
                 </div>
-                <div className="space-y-5">
-                  {data.items.map((skill, i) => (
-                    <div key={i}>
-                      <div className="flex justify-between items-center mb-2">
-                        <div>
-                          <span className="font-semibold text-slate-900">{skill.name}</span>
-                          <span className="text-sm text-gray-500 ml-2">• {skill.desc}</span>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Riya Shah. All rights reserved.</p>
+                <p>Built with HTML, CSS and JavaScript</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var navbar = document.getElementById('navbar');
+        var navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            var current = '';
+            var sections = document.querySelectorAll('section');
+            
+            sections.forEach(function(section) {
+                var sectionTop = section.offsetTop;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> class="card-metric">4+ Projects Delivered</div>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data Analytics</h3>
+                    <p>Applying statistical methods and machine learning to uncover patterns, trends, and predictive insights</p>
+                    <div class="card-metric">85% Forecast Accuracy</div>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Process Optimization</h3>
+                    <p>Streamlining workflows through automation and data-driven process improvements</p>
+                    <div class="card-metric">40% Efficiency Gains</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Professional Journey</span>
+                <h2 class="section-title">Work Experience</h2>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Operation Intern</h3>
+                    </div>
+                    <p class="exp-company">Internship Cell IIT Madras</p>
+                    <div class="exp-meta">
+                        <span><i class="fas fa-calendar"></i> Oct 2024 - May 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</span>
+                        <span><i class="fas fa-briefcase"></i> Full-time Internship</span>
+                    </div>
+                    <p class="exp-desc">
+                        Leading data operations and analytics initiatives for student onboarding processes at one of India's premier institutions.
+                    </p>
+                </div>
+                <div class="exp-body">
+                    <h4>Key Responsibilities and Impact</h4>
+                    <div class="resp-item">
+                        <i class="fas fa-database"></i>
+                        <div class="resp-content">
+                            <h5>Database Management and ERP Systems</h5>
+                            <p>Maintained and updated comprehensive student databases using MS Excel and internal ERP systems, ensuring data accuracy and integrity across 500+ student records</p>
                         </div>
-                        <span className="text-sm font-semibold text-slate-700">{skill.level}%</span>
-                      </div>
-                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-slate-900 rounded-full transition-all duration-1000"
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
-            <h3 className="text-2xl font-bold mb-6 text-slate-900 flex items-center">
-              <Award className="text-slate-700 mr-3" size={28} />
-              Certifications & Training
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {certifications.map((cert, index) => (
-                <div key={index} className="p-5 bg-gray-50 rounded-xl border border-gray-200">
-                  <h4 className="font-semibold text-slate-900 mb-2">{cert.name}</h4>
-                  <p className="text-sm text-gray-600 mb-1">{cert.issuer}</p>
-                  <p className="text-xs text-slate-700 font-semibold">{cert.year}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section id="education" className="py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Academic Background</span>
-            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
-              Education
-            </h2>
-          </div>
-
-          <div className="space-y-6">
-            {education.map((edu, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-200">
-                <div className="bg-slate-900 p-6 text-white rounded-t-2xl">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4 flex-1">
-                      <GraduationCap size={36} className="flex-shrink-0 mt-1" />
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-bold mb-2">{edu.degree}</h3>
-                        <p className="text-lg font-semibold text-gray-300 mb-1">{edu.institution}</p>
-                        {edu.board && <p className="text-sm text-gray-400 mb-2">{edu.board}</p>}
-                        <div className="flex flex-wrap gap-3 text-sm">
-                          <span className="flex items-center space-x-1">
-                            <MapPin size={14} />
-                            <span>{edu.location}</span>
-                          </span>
-                          <span className="flex items-center space-x-1">
-                            <Calendar size={14} />
-                            <span>{edu.period}</span>
-                          </span>
-                          <span className="bg-white/10 px-3 py-1 rounded-lg font-medium">
-                            {edu.type}
-                          </span>
+                    <div class="resp-item">
+                        <i class="fas fa-bolt"></i>
+                        <div class="resp-content">
+                            <h5>Process Optimization and IT Coordination</h5>
+                            <p>Collaborated with IT department to streamline student onboarding workflows, reducing processing time by 30% through automation and system improvements</p>
                         </div>
-                      </div>
                     </div>
-                    <div className="text-right ml-4">
-                      <div className="text-3xl font-bold">{edu.cgpa}</div>
-                      <div className="text-sm text-gray-300">{edu.grade}</div>
+                    <div class="resp-item">
+                        <i class="fas fa-users"></i>
+                        <div class="resp-content">
+                            <h5>CRM Implementation and Management</h5>
+                            <p>Utilized CRM tools to track, manage, and analyze student queries and follow-ups, improving response time by 45% and increasing satisfaction rates</p>
+                        </div>
                     </div>
-                  </div>
+                    <div class="resp-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="resp-content">
+                            <h5>Data Privacy and Compliance</h5>
+                            <p>Monitored compliance with data privacy standards during document verification and record management, ensuring 100% adherence to institutional policies</p>
+                        </div>
+                    </div>
+                    <div class="resp-item">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="resp-content">
+                            <h5>Analytics and Reporting</h5>
+                            <p>Generated and analyzed periodic reports on student onboarding metrics using advanced Excel, providing actionable insights that improved process efficiency by 25%</p>
+                        </div>
+                    </div>
+
+                    <div class="achievements">
+                        <h4><i class="fas fa-star"></i> Key Achievements</h4>
+                        <div class="ach-grid">
+                            <div class="ach-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Improved data accuracy from 92% to 99.5%</span>
+                            </div>
+                            <div class="ach-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Reduced onboarding time by 30%</span>
+                            </div>
+                            <div class="ach-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Increased query response rate by 45%</span>
+                            </div>
+                            <div class="ach-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Maintained 100% compliance record</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="p-6">
-                  <ul className="space-y-2">
-                    {edu.highlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start">
-                        <CheckCircle className="text-slate-700 mr-3 mt-0.5 flex-shrink-0" size={18} />
-                        <span className="text-gray-700">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-desc">
+                    Real-world analytics solutions delivering measurable business impact
+                </p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Call Center Dashboard</h3>
+                    <p class="project-subtitle">Excel and Power Query Analytics</p>
+                    <p class="project-tech">Excel • Power Query • Pivot Tables • VBA</p>
+                    <div class="project-metrics">
+                        <span class="metric-badge">40% Time Saved</span>
+                        <span class="metric-badge">1000+ Calls Analyzed</span>
+                        <span class="metric-badge">23% Satisfaction Increase</span>
+                    </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-24 bg-slate-900 text-white">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-5xl font-bold mb-6">Let's Create Something Amazing</h2>
-          <p className="text-xl mb-4 text-gray-300">
-            Ready to turn your data into actionable insights?
-          </p>
-          <p className="text-lg mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            I'm currently open to full-time opportunities, freelance projects, and collaborations. 
-            Let's discuss how data analytics can drive your business forward.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-3xl mx-auto">
-            <a href="mailto:riyashah9095@gmail.com" 
-               className="bg-white/10 backdrop-blur-lg p-8 rounded-xl hover:bg-white hover:text-slate-900 transition-all border border-white/20">
-              <Mail className="mx-auto mb-4" size={36} />
-              <p className="font-semibold text-lg mb-1">Email Me</p>
-              <p className="text-sm opacity-90">riyashah9095@gmail.com</p>
-            </a>
-            <a href="tel:6265008937" 
-               className="bg-white/10 backdrop-blur-lg p-8 rounded-xl hover:bg-white hover:text-slate-900 transition-all border border-white/20">
-              <Phone className="mx-auto mb-4" size={36} />
-              <p className="font-semibold text-lg mb-1">Call Me</p>
-              <p className="text-sm opacity-90">+91 6265008937</p>
-            </a>
-          </div>
-
-          <div className="flex justify-center space-x-6">
-            {[
-              { icon: Linkedin, href: "https://linkedin.com/in/riya-shah-517883231", label: "LinkedIn" },
-              { icon: Github, href: "https://github.com/22f1000952", label: "GitHub" }
-            ].map((social, index) => (
-              <a 
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/10 backdrop-blur-lg p-5 rounded-full hover:bg-white hover:text-slate-900 transition-all border border-white/20"
-                aria-label={social.label}
-              >
-                <social.icon size={28} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-950 text-white py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <h3 className="text-2xl font-bold mb-2">Riya Shah</h3>
-              <p className="text-gray-400">Data Analytics Professional</p>
+                <div class="project-body">
+                    <div class="project-grid">
+                        <div class="project-section">
+                            <h4>Overview</h4>
+                            <p>Engineered a comprehensive call center analytics dashboard transforming raw data into actionable insights for operational excellence.</p>
+                            
+                            <h4>Challenge</h4>
+                            <p>The call center was struggling with manual data processing, taking hours to generate reports and lacking visibility into real-time performance metrics.</p>
+                            
+                            <h4>Solution</h4>
+                            <p>Built an automated Excel dashboard using Power Query for data transformation and Pivot Tables for dynamic analysis, enabling instant insights.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4>Key Highlights</h4>
+                            <div class="highlights">
+                                <div class="highlight-item">
+                                    <h5>40% Efficiency Gain</h5>
+                                    <p>Automated data cleaning and reporting processes, eliminating manual errors</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Customer Satisfaction</h5>
+                                    <p>Analyzed satisfaction trends across 1,000+ calls to identify improvement areas</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Performance Metrics</h5>
+                                    <p>Tracked agent performance, call duration patterns, and resolution rates</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Purchase Behavior</h5>
+                                    <p>Correlated call quality with purchase decisions and customer retention</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-box">
+                        <h4>Business Impact</h4>
+                        <p>The dashboard reduced reporting time from 4 hours to 15 minutes and enabled data-driven decisions that improved customer satisfaction by 23%.</p>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Excel</span>
+                        <span class="tech-tag">Power Query</span>
+                        <span class="tech-tag">Pivot Tables</span>
+                        <span class="tech-tag">Data Visualization</span>
+                        <span class="tech-tag">Process Automation</span>
+                    </div>
+                </div>
             </div>
-            <div className="flex space-x-8">
-              <button onClick={() => scrollToSection('home')} className="text-gray-400 hover:text-white transition-colors">Home</button>
-              <button onClick={() => scrollToSection('projects')} className="text-gray-400 hover:text-white transition-colors">Projects</button>
-              <button onClick={() => scrollToSection('skills')} className="text-gray-400 hover:text-white transition-colors">Skills</button>
-              <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-white transition-colors">Contact</button>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Farmers Market Dashboard</h3>
+                    <p class="project-subtitle">Multi-Page Power BI Solution</p>
+                    <p class="project-tech">Power BI • DAX • Power Query • Data Modeling</p>
+                    <div class="project-metrics">
+                        <span class="metric-badge">3 Dashboard Pages</span>
+                        <span class="metric-badge">9 Vendors Tracked</span>
+                        <span class="metric-badge">29 Unique Customers</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-grid">
+                        <div class="project-section">
+                            <h4>Overview</h4>
+                            <p>Developed a three-tier Power BI dashboard providing comprehensive insights for farmers market stakeholders from executives to operational managers.</p>
+                            
+                            <h4>Challenge</h4>
+                            <p>Market administrators needed to track diverse metrics across vendors, products, and customers but lacked a unified view of market health and performance.</p>
+                            
+                            <h4>Solution</h4>
+                            <p>Created an interactive Power BI solution with three specialized pages for different stakeholder needs.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4>Key Highlights</h4>
+                            <div class="highlights">
+                                <div class="highlight-item">
+                                    <h5>Executive Overview</h5>
+                                    <p>Real-time KPIs tracking total sales, unique customers, vendors, and booth utilization</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Sales Intelligence</h5>
+                                    <p>Performance analysis by product category, vendor, and seasonal trends</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Customer Analytics</h5>
+                                    <p>Geographic demand patterns, buying behavior, and segmentation analysis</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Advanced DAX</h5>
+                                    <p>Complex measures for YoY growth, market share, and profitability calculations</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-box">
+                        <h4>Business Impact</h4>
+                        <p>Enabled data-driven vendor recruitment strategies and optimized product mix, resulting in 15% revenue growth quarter-over-quarter.</p>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">DAX</span>
+                        <span class="tech-tag">Power Query</span>
+                        <span class="tech-tag">Data Modeling</span>
+                        <span class="tech-tag">Business Intelligence</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>© 2024 Riya Shah. All rights reserved.</p>
-            <p className="text-sm mt-2">Built with React & Tailwind CSS</p>
-          </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Superstore Sales Analysis</h3>
+                    <p class="project-subtitle">Enterprise BI Solution</p>
+                    <p class="project-tech">Power BI • SQL • DAX • Advanced Analytics</p>
+                    <div class="project-metrics">
+                        <span class="metric-badge">₹283K Sales</span>
+                        <span class="metric-badge">1358 Orders</span>
+                        <span class="metric-badge">12% Profit Margin</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-grid">
+                        <div class="project-section">
+                            <h4>Overview</h4>
+                            <p>Architected a comprehensive enterprise dashboard providing 360 degree visibility into sales performance, profitability, and growth trends.</p>
+                            
+                            <h4>Challenge</h4>
+                            <p>The superstore had fragmented data across multiple systems with no unified view of business performance.</p>
+                            
+                            <h4>Solution</h4>
+                            <p>Built a three-page Power BI solution integrating data from multiple sources with executive KPIs and customer insights.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4>Key Highlights</h4>
+                            <div class="highlights">
+                                <div class="highlight-item">
+                                    <h5>Executive Dashboard</h5>
+                                    <p>Key metrics including sales, profit, orders, and YoY growth tracking</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Trend Analysis</h5>
+                                    <p>Time-series analysis identifying seasonal patterns and category performance</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Regional Intelligence</h5>
+                                    <p>Geographic breakdown with profitability analysis across all regions</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Customer Segmentation</h5>
+                                    <p>Detailed analysis of buying patterns by segment and product category</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-box">
+                        <h4>Business Impact</h4>
+                        <p>Identified underperforming regions and categories, enabling targeted interventions that improved overall profit margin.</p>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">DAX</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Data Analysis</span>
+                        <span class="tech-tag">Business Intelligence</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Sales and Inventory Optimization</h3>
+                    <p class="project-subtitle">Predictive Analytics and Forecasting</p>
+                    <p class="project-tech">Python • ARIMA • Statistical Modeling • ML</p>
+                    <div class="project-metrics">
+                        <span class="metric-badge">85% Accuracy</span>
+                        <span class="metric-badge">22% Cost Reduction</span>
+                        <span class="metric-badge">96% Availability</span>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-grid">
+                        <div class="project-section">
+                            <h4>Overview</h4>
+                            <p>Implemented advanced statistical models to forecast demand and optimize inventory levels, reducing stockouts while minimizing carrying costs.</p>
+                            
+                            <h4>Challenge</h4>
+                            <p>The business faced frequent stockouts of popular items and excess inventory of slow-moving SKUs.</p>
+                            
+                            <h4>Solution</h4>
+                            <p>Developed ARIMA forecasting models and conducted price elasticity analysis to optimize inventory and pricing.</p>
+                        </div>
+                        <div class="project-section">
+                            <h4>Key Highlights</h4>
+                            <div class="highlights">
+                                <div class="highlight-item">
+                                    <h5>ARIMA Forecasting</h5>
+                                    <p>Built time-series models achieving 85% accuracy in demand prediction</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Price Elasticity</h5>
+                                    <p>Analyzed SKU-level price sensitivity to optimize pricing strategy</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Inventory Strategy</h5>
+                                    <p>Recommended optimal stock levels balancing availability and costs</p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h5>Strategic Planning</h5>
+                                    <p>Provided data-driven recommendations for procurement and pricing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="impact-box">
+                        <h4>Business Impact</h4>
+                        <p>Reduced inventory carrying costs by 22% while improving product availability from 87% to 96%.</p>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">ARIMA</span>
+                        <span class="tech-tag">Statistical Analysis</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Forecasting</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </footer>
-    </div>
-  );
-}
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-desc">
+                    Comprehensive toolkit for end-to-end data analytics and business intelligence
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <div class="skill-cat-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Programming and Databases</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Python</span>
+                                <span class="skill-desc">Data analysis, automation, ML</span>
+                            </div>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">SQL (MySQL)</span>
+                                <span class="skill-desc">Complex queries, optimization</span>
+                            </div>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-desc">Interactive visualizations</span>
+                            </div>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Java</span>
+                                <span class="skill-desc">Object-oriented programming</span>
+                            </div>
+                            <span class="skill-percent">70%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-cat">
+                    <div class="skill-cat-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Data Visualization</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Power BI</span>
+                                <span class="skill-desc">DAX, complex dashboards</span>
+                            </div>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Tableau</span>
+                                <span class="skill-desc">Interactive storytelling</span>
+                            </div>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Advanced Excel</span>
+                                <span class="skill-desc">Power Query, Pivot Tables</span>
+                            </div>
+                            <span class="skill-percent">95%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 95%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Matplotlib/Seaborn</span>
+                                <span class="skill-desc">Python visualization</span>
+                            </div>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-cat">
+                    <div class="skill-cat-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Analytics and Tools</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Power Query</span>
+                                <span class="skill-desc">Data transformation, ETL</span>
+                            </div>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Power Pivot</span>
+                                <span class="skill-desc">Data modeling</span>
+                            </div>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Statistical Analysis</span>
+                                <span class="skill-desc">ARIMA, forecasting</span>
+                            </div>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">CRM Systems</span>
+                                <span class="skill-desc">Data management</span>
+                            </div>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-cat">
+                    <div class="skill-cat-header">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Additional Skills</h3>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Git/GitHub</span>
+                                <span class="skill-desc">Version control</span>
+                            </div>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Agile Methodology</span>
+                                <span class="skill-desc">Project management</span>
+                            </div>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Business Intelligence</span>
+                                <span class="skill-desc">Strategic insights</span>
+                            </div>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <div>
+                                <span class="skill-name">Data Storytelling</span>
+                                <span class="skill-desc">Clear communication</span>
+                            </div>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certs">
+                <h3><i class="fas fa-award"></i> Certifications and Training</h3>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <h4>Advanced Excel for Data Analysis</h4>
+                        <p class="cert-issuer">LinkedIn Learning</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>Power BI Data Analyst</h4>
+                        <p class="cert-issuer">Microsoft</p>
+                        <p class="cert-year">2024</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>SQL for Data Science</h4>
+                        <p class="cert-issuer">Coursera</p>
+                        <p class="cert-year">2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Academic Background</span>
+                <h2 class="section-title">Education</h2>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-header">
+                    <div class="edu-info">
+                        <div class="edu-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Bachelor of Science in Data Science and Programming</h3>
+                        </div>
+                        <p class="edu-institution">Indian Institute of Technology Madras</p>
+                        <div class="edu-details">
+                            <span><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</span>
+                            <span><i class="fas fa-calendar"></i> 2022 - 2025</span>
+                            <span class="edu-type">Full-time</span>
+                        </div>
+                    </div>
+                    <div class="edu-grade">
+                        <div class="edu-cgpa">7.1</div>
+                        <div class="edu-grade-text">CGPA</div>
+                        <div class="edu-grade-text">First Class</div>
+                    </div>
+                </div>
+                <div class="edu-body">
+                    <ul class="edu-highlights">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Specialization in Data Science, Machine Learning, and Statistical Analysis</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Completed projects in predictive modeling, data visualization, and business analytics</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Relevant coursework: Statistics, Database Systems, Machine Learning, Data Structures</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-header">
+                    <div class="edu-info">
+                        <div class="edu-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Bachelor of Arts</h3>
+                        </div>
+                        <p class="edu-institution">Eklavya University</p>
+                        <div class="edu-details">
+                            <span><i class="fas fa-map-marker-alt"></i> Madhya Pradesh, India</span>
+                            <span><i class="fas fa-calendar"></i> 2020 - 2023</span>
+                            <span class="edu-type">Full-time</span>
+                        </div>
+                    </div>
+                    <div class="edu-grade">
+                        <div class="edu-cgpa">8.9</div>
+                        <div class="edu-grade-text">CGPA</div>
+                        <div class="edu-grade-text">First Class with Distinction</div>
+                    </div>
+                </div>
+                <div class="edu-body">
+                    <ul class="edu-highlights">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Graduated with distinction, demonstrating strong academic performance</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Developed analytical and critical thinking skills through diverse coursework</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Active participation in academic seminars and research activities</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-header">
+                    <div class="edu-info">
+                        <div class="edu-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Senior Secondary (12th Class)</h3>
+                        </div>
+                        <p class="edu-institution">Gyanodaya Vidya Mandir, Narsinghgarh</p>
+                        <p class="edu-board">Central Board of Secondary Education (CBSE)</p>
+                        <div class="edu-details">
+                            <span><i class="fas fa-map-marker-alt"></i> Madhya Pradesh, India</span>
+                            <span><i class="fas fa-calendar"></i> 2019 - 2020</span>
+                        </div>
+                    </div>
+                    <div
