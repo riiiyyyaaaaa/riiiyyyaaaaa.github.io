@@ -1,0 +1,805 @@
+import React, { useState, useEffect } from 'react';
+import { BarChart3, Code, Database, TrendingUp, Mail, Linkedin, Github, Phone, ChevronDown, Award, Briefcase, GraduationCap, Calendar, MapPin, CheckCircle, ArrowRight, Target, Users, FileText, Zap, BookOpen, Star } from 'lucide-react';
+
+export default function Portfolio() {
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 150 && rect.bottom >= 150;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const projects = [
+    {
+      title: "Call Center Dashboard",
+      subtitle: "Excel & Power Query Analytics",
+      tech: "Excel • Power Query • Pivot Tables • VBA",
+      description: "Engineered a comprehensive call center analytics dashboard transforming raw data into actionable insights for operational excellence.",
+      challenge: "The call center was struggling with manual data processing, taking hours to generate reports and lacking visibility into real-time performance metrics.",
+      solution: "Built an automated Excel dashboard using Power Query for data transformation and Pivot Tables for dynamic analysis, enabling instant insights.",
+      highlights: [
+        {
+          title: "40% Efficiency Gain",
+          desc: "Automated data cleaning and reporting processes, eliminating manual errors"
+        },
+        {
+          title: "Customer Satisfaction",
+          desc: "Analyzed satisfaction trends across 1,000+ calls to identify improvement areas"
+        },
+        {
+          title: "Performance Metrics",
+          desc: "Tracked agent performance, call duration patterns, and resolution rates"
+        },
+        {
+          title: "Purchase Behavior",
+          desc: "Correlated call quality with purchase decisions and customer retention"
+        }
+      ],
+      impact: "The dashboard reduced reporting time from 4 hours to 15 minutes and enabled data-driven decisions that improved customer satisfaction by 23%.",
+      skills: ["Excel", "Power Query", "Pivot Tables", "Data Visualization", "Process Automation"],
+      metrics: ["40% Time Saved", "1000+ Calls Analyzed", "23% Satisfaction Increase"]
+    },
+    {
+      title: "Farmers Market Dashboard",
+      subtitle: "Multi-Page Power BI Solution",
+      tech: "Power BI • DAX • Power Query • Data Modeling",
+      description: "Developed a three-tier Power BI dashboard providing comprehensive insights for farmers market stakeholders from executives to operational managers.",
+      challenge: "Market administrators needed to track diverse metrics across vendors, products, and customers but lacked a unified view of market health and performance.",
+      solution: "Created an interactive Power BI solution with three specialized pages: Overview for executives, Sales & Trends for analysts, and Customer Insights for marketing.",
+      highlights: [
+        {
+          title: "Executive Overview",
+          desc: "Real-time KPIs tracking total sales, unique customers, vendors, and booth utilization"
+        },
+        {
+          title: "Sales Intelligence",
+          desc: "Performance analysis by product category, vendor, and seasonal trends"
+        },
+        {
+          title: "Customer Analytics",
+          desc: "Geographic demand patterns, buying behavior, and segmentation analysis"
+        },
+        {
+          title: "Advanced DAX",
+          desc: "Complex measures for YoY growth, market share, and profitability calculations"
+        }
+      ],
+      impact: "Enabled data-driven vendor recruitment strategies and optimized product mix, resulting in 15% revenue growth quarter-over-quarter.",
+      skills: ["Power BI", "DAX", "Power Query", "Data Modeling", "Business Intelligence"],
+      metrics: ["3 Dashboard Pages", "9 Vendors Tracked", "29 Unique Customers"]
+    },
+    {
+      title: "Superstore Sales Analysis",
+      subtitle: "Enterprise BI Solution",
+      tech: "Power BI • SQL • DAX • Advanced Analytics",
+      description: "Architected a comprehensive enterprise dashboard providing 360° visibility into sales performance, profitability, and growth trends across regions and categories.",
+      challenge: "The superstore had fragmented data across multiple systems with no unified view of business performance, making strategic planning difficult.",
+      solution: "Built a three-page Power BI solution integrating data from multiple sources, featuring executive KPIs, trend analysis, and deep-dive customer insights.",
+      highlights: [
+        {
+          title: "Executive Dashboard",
+          desc: "Key metrics including sales (₹283K), profit (₹34.7K), orders (1358), and YoY growth tracking"
+        },
+        {
+          title: "Trend Analysis",
+          desc: "Time-series analysis identifying seasonal patterns and category performance drivers"
+        },
+        {
+          title: "Regional Intelligence",
+          desc: "Geographic breakdown with profitability analysis across all regions"
+        },
+        {
+          title: "Customer Segmentation",
+          desc: "Detailed analysis of buying patterns by customer segment and product category"
+        }
+      ],
+      impact: "Identified underperforming regions and categories, enabling targeted interventions that improved overall profit margin by 0.12%.",
+      skills: ["Power BI", "DAX", "SQL", "Data Analysis", "Business Intelligence", "Statistical Analysis"],
+      metrics: ["₹283K Sales", "1358 Orders", "12% Profit Margin"]
+    },
+    {
+      title: "Sales & Inventory Optimization",
+      subtitle: "Predictive Analytics & Forecasting",
+      tech: "Python • ARIMA • Statistical Modeling • ML",
+      description: "Implemented advanced statistical models to forecast demand and optimize inventory levels, reducing stockouts while minimizing carrying costs.",
+      challenge: "The business faced frequent stockouts of popular items and excess inventory of slow-moving SKUs, tying up capital and losing sales.",
+      solution: "Developed ARIMA forecasting models and conducted price elasticity analysis to optimize inventory levels and pricing strategies.",
+      highlights: [
+        {
+          title: "ARIMA Forecasting",
+          desc: "Built time-series models achieving 85% accuracy in demand prediction"
+        },
+        {
+          title: "Price Elasticity",
+          desc: "Analyzed SKU-level price sensitivity to optimize pricing strategy"
+        },
+        {
+          title: "Inventory Strategy",
+          desc: "Recommended optimal stock levels balancing availability and carrying costs"
+        },
+        {
+          title: "Strategic Planning",
+          desc: "Provided data-driven recommendations for procurement and pricing decisions"
+        }
+      ],
+      impact: "Reduced inventory carrying costs by 22% while improving product availability from 87% to 96%, significantly enhancing customer satisfaction.",
+      skills: ["Python", "ARIMA", "Statistical Analysis", "Machine Learning", "Forecasting", "Pandas", "NumPy"],
+      metrics: ["85% Accuracy", "22% Cost Reduction", "96% Availability"]
+    }
+  ];
+
+  const skills = {
+    "Programming & Databases": {
+      icon: <Code className="text-slate-700" size={28} />,
+      items: [
+        { name: "Python", level: 85, desc: "Data analysis, automation, ML" },
+        { name: "SQL (MySQL)", level: 80, desc: "Complex queries, optimization" },
+        { name: "JavaScript", level: 75, desc: "Interactive visualizations" },
+        { name: "Java", level: 70, desc: "Object-oriented programming" }
+      ]
+    },
+    "Data Visualization": {
+      icon: <BarChart3 className="text-slate-700" size={28} />,
+      items: [
+        { name: "Power BI", level: 90, desc: "DAX, complex dashboards" },
+        { name: "Tableau", level: 75, desc: "Interactive storytelling" },
+        { name: "Advanced Excel", level: 95, desc: "Power Query, Pivot Tables" },
+        { name: "Matplotlib/Seaborn", level: 80, desc: "Python visualization" }
+      ]
+    },
+    "Analytics & Tools": {
+      icon: <Database className="text-slate-700" size={28} />,
+      items: [
+        { name: "Power Query", level: 90, desc: "Data transformation, ETL" },
+        { name: "Power Pivot", level: 85, desc: "Data modeling" },
+        { name: "Statistical Analysis", level: 80, desc: "ARIMA, forecasting" },
+        { name: "CRM Systems", level: 75, desc: "Data management" }
+      ]
+    },
+    "Additional Skills": {
+      icon: <Zap className="text-slate-700" size={28} />,
+      items: [
+        { name: "Git/GitHub", level: 80, desc: "Version control" },
+        { name: "Agile Methodology", level: 75, desc: "Project management" },
+        { name: "Business Intelligence", level: 85, desc: "Strategic insights" },
+        { name: "Data Storytelling", level: 88, desc: "Clear communication" }
+      ]
+    }
+  };
+
+  const experience = {
+    title: "Operation Intern",
+    company: "Internship Cell IIT Madras",
+    location: "Tamil Nadu, India",
+    period: "Oct 2024 - May 2025",
+    type: "Full-time Internship",
+    description: "Leading data operations and analytics initiatives for student onboarding processes at one of India's premier institutions.",
+    responsibilities: [
+      {
+        title: "Database Management & ERP Systems",
+        desc: "Maintained and updated comprehensive student databases using MS Excel and internal ERP systems, ensuring data accuracy and integrity across 500+ student records",
+        icon: <Database size={20} className="text-slate-700" />
+      },
+      {
+        title: "Process Optimization & IT Coordination",
+        desc: "Collaborated with IT department to streamline student onboarding workflows, reducing processing time by 30% through automation and system improvements",
+        icon: <Zap size={20} className="text-slate-700" />
+      },
+      {
+        title: "CRM Implementation & Management",
+        desc: "Utilized CRM tools to track, manage, and analyze student queries and follow-ups, improving response time by 45% and increasing satisfaction rates",
+        icon: <Users size={20} className="text-slate-700" />
+      },
+      {
+        title: "Data Privacy & Compliance",
+        desc: "Monitored compliance with data privacy standards during document verification and record management, ensuring 100% adherence to institutional policies",
+        icon: <CheckCircle size={20} className="text-slate-700" />
+      },
+      {
+        title: "Analytics & Reporting",
+        desc: "Generated and analyzed periodic reports on student onboarding metrics using advanced Excel, providing actionable insights that improved process efficiency by 25%",
+        icon: <FileText size={20} className="text-slate-700" />
+      }
+    ],
+    achievements: [
+      "Improved data accuracy from 92% to 99.5%",
+      "Reduced onboarding time by 30%",
+      "Increased query response rate by 45%",
+      "Maintained 100% compliance record"
+    ]
+  };
+
+  const education = [
+    {
+      degree: "Bachelor of Science in Data Science and Programming",
+      institution: "Indian Institute of Technology Madras",
+      location: "Tamil Nadu, India",
+      period: "2022 - 2025",
+      cgpa: "7.1 CGPA",
+      grade: "First Class",
+      type: "Full-time",
+      highlights: [
+        "Specialization in Data Science, Machine Learning, and Statistical Analysis",
+        "Completed projects in predictive modeling, data visualization, and business analytics",
+        "Relevant coursework: Statistics, Database Systems, Machine Learning, Data Structures"
+      ]
+    },
+    {
+      degree: "Bachelor of Arts",
+      institution: "Eklavya University",
+      location: "Madhya Pradesh, India",
+      period: "2020 - 2023",
+      cgpa: "8.9 CGPA",
+      grade: "First Class with Distinction",
+      type: "Full-time",
+      highlights: [
+        "Graduated with distinction, demonstrating strong academic performance",
+        "Developed analytical and critical thinking skills through diverse coursework",
+        "Active participation in academic seminars and research activities"
+      ]
+    },
+    {
+      degree: "Senior Secondary (12th Class)",
+      institution: "Gyanodaya Vidya Mandir, Narsinghgarh",
+      board: "Central Board of Secondary Education (CBSE)",
+      location: "Madhya Pradesh, India",
+      period: "2019 - 2020",
+      cgpa: "7.6 CGPA",
+      grade: "First Class",
+      highlights: [
+        "Strong foundation in mathematics and analytical subjects",
+        "Developed problem-solving and logical reasoning skills"
+      ]
+    }
+  ];
+
+  const certifications = [
+    { name: "Advanced Excel for Data Analysis", issuer: "LinkedIn Learning", year: "2024" },
+    { name: "Power BI Data Analyst", issuer: "Microsoft", year: "2024" },
+    { name: "SQL for Data Science", issuer: "Coursera", year: "2023" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white shadow-md border-b border-gray-200' 
+          : 'bg-slate-900'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <h1 className={`text-2xl font-bold transition-all duration-300 ${
+              scrolled ? 'text-slate-900' : 'text-white'
+            }`}>
+              Riya Shah
+            </h1>
+            <div className="hidden md:flex space-x-1">
+              {['Home', 'About', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                    activeSection === item.toLowerCase()
+                      ? scrolled
+                        ? 'bg-slate-900 text-white'
+                        : 'bg-white/10 text-white'
+                      : scrolled 
+                        ? 'text-gray-700 hover:bg-gray-100' 
+                        : 'text-white/70 hover:bg-white/10'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center bg-slate-900 text-white relative">
+        <div className="max-w-5xl mx-auto px-6 text-center z-10">
+          <div className="mb-6">
+            <span className="bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full text-sm font-medium border border-white/20">
+              Available for Opportunities
+            </span>
+          </div>
+          
+          <h1 className="text-7xl md:text-8xl font-bold mb-6 tracking-tight">
+            Riya Shah
+          </h1>
+          
+          <p className="text-2xl font-light text-gray-300 mb-6">Data Analytics Professional</p>
+          
+          <p className="text-xl mb-4 max-w-3xl mx-auto leading-relaxed text-gray-300">
+            Transforming Complex Data into Strategic Business Insights
+          </p>
+          
+          <p className="text-lg mb-12 max-w-2xl mx-auto leading-relaxed text-gray-400">
+            Specialized in Power BI, Advanced Excel, and SQL • Passionate about driving data-driven decisions 
+            through compelling visualizations and actionable analytics
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <button 
+              onClick={() => scrollToSection('projects')}
+              className="bg-white text-slate-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-all flex items-center space-x-2"
+            >
+              <span>View My Work</span>
+              <ArrowRight size={20} />
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="border-2 border-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition-all"
+            >
+              Get In Touch
+            </button>
+          </div>
+          
+          <div className="flex justify-center space-x-6">
+            {[
+              { icon: Mail, href: "mailto:riyashah9095@gmail.com", label: "Email" },
+              { icon: Linkedin, href: "https://linkedin.com/in/riya-shah-517883231", label: "LinkedIn" },
+              { icon: Github, href: "https://github.com/22f1000952", label: "GitHub" },
+              { icon: Phone, href: "tel:6265008937", label: "Phone" }
+            ].map((social, index) => (
+              <a 
+                key={index}
+                href={social.href}
+                target={social.href.startsWith('http') ? "_blank" : undefined}
+                rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                className="bg-white/10 backdrop-blur-sm p-4 rounded-full hover:bg-white hover:text-slate-900 transition-all border border-white/20"
+                aria-label={social.label}
+              >
+                <social.icon size={24} />
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        <button 
+          onClick={() => scrollToSection('about')} 
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white"
+        >
+          <ChevronDown size={40} />
+        </button>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">About Me</span>
+            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
+              Turning Data Into Decisions
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              I'm a data analytics professional with a passion for uncovering insights that drive business growth
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-10 shadow-lg mb-12 border border-gray-200">
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              With a strong foundation in <span className="font-semibold text-slate-900">Business Intelligence</span>, 
+              <span className="font-semibold text-slate-900"> Data Visualization</span>, and 
+              <span className="font-semibold text-slate-900"> Analytics</span>, I specialize in transforming raw data 
+              into compelling narratives that empower stakeholders to make informed, strategic decisions.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              My experience spans across <span className="font-semibold">Excel automation</span>, 
+              <span className="font-semibold"> Power BI dashboard development</span>, 
+              <span className="font-semibold"> SQL database management</span>, and 
+              <span className="font-semibold"> predictive analytics</span>. I've successfully delivered projects 
+              that have improved operational efficiency by up to 40% and driven revenue growth through data-driven insights.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Currently pursuing my Bachelor's in Data Science from <span className="font-semibold">IIT Madras</span> 
+              while gaining practical experience as an Operations Intern, I bring both theoretical knowledge and 
+              hands-on expertise to every project I undertake.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Target className="text-slate-700" size={40} />,
+                title: "Business Intelligence",
+                desc: "Creating interactive dashboards and reports that provide real-time visibility into business metrics and KPIs",
+                metrics: "4+ Projects Delivered"
+              },
+              {
+                icon: <TrendingUp className="text-slate-700" size={40} />,
+                title: "Data Analytics",
+                desc: "Applying statistical methods and machine learning to uncover patterns, trends, and predictive insights",
+                metrics: "85% Forecast Accuracy"
+              },
+              {
+                icon: <Zap className="text-slate-700" size={40} />,
+                title: "Process Optimization",
+                desc: "Streamlining workflows through automation and data-driven process improvements",
+                metrics: "40% Efficiency Gains"
+              }
+            ].map((item, index) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all border border-gray-200">
+                <div className="mb-4">{item.icon}</div>
+                <h3 className="text-xl font-bold mb-3 text-slate-900">{item.title}</h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">{item.desc}</p>
+                <div className="pt-4 border-t border-gray-200">
+                  <span className="text-sm font-semibold text-slate-700">{item.metrics}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Professional Journey</span>
+            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
+              Work Experience
+            </h2>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200">
+            <div className="bg-slate-900 p-8 text-white rounded-t-2xl">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <Briefcase size={28} />
+                    <h3 className="text-2xl font-bold">{experience.title}</h3>
+                  </div>
+                  <p className="text-xl font-semibold text-gray-300 mb-2">{experience.company}</p>
+                  <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                    <div className="flex items-center space-x-2">
+                      <Calendar size={16} />
+                      <span>{experience.period}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <MapPin size={16} />
+                      <span>{experience.location}</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Briefcase size={16} />
+                      <span>{experience.type}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p className="mt-6 text-lg text-gray-300 leading-relaxed">
+                {experience.description}
+              </p>
+            </div>
+
+            <div className="p-8">
+              <h4 className="text-xl font-bold mb-6 text-slate-900">Key Responsibilities & Impact</h4>
+              <div className="space-y-4">
+                {experience.responsibilities.map((resp, index) => (
+                  <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
+                    <div className="flex-shrink-0 mt-1">
+                      {resp.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h5 className="font-semibold text-slate-900 mb-2">{resp.title}</h5>
+                      <p className="text-gray-600 leading-relaxed">{resp.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
+                <h4 className="text-lg font-bold mb-4 text-slate-900 flex items-center">
+                  <Star className="text-slate-700 mr-2" size={24} />
+                  Key Achievements
+                </h4>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {experience.achievements.map((achievement, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <CheckCircle className="text-slate-700 flex-shrink-0" size={18} />
+                      <span className="text-gray-700">{achievement}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
+            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
+              Featured Projects
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Real-world analytics solutions delivering measurable business impact
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {projects.map((project, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all">
+                <div className="bg-slate-900 p-8 text-white rounded-t-2xl">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
+                      <p className="text-xl font-semibold text-gray-300 mb-3">{project.subtitle}</p>
+                      <p className="text-gray-400 mb-4">{project.tech}</p>
+                      <div className="flex flex-wrap gap-3">
+                        {project.metrics.map((metric, i) => (
+                          <span key={i} className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg text-sm font-medium border border-white/20">
+                            {metric}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-8">
+                  <div className="grid md:grid-cols-2 gap-8 mb-6">
+                    <div>
+                      <h4 className="text-lg font-bold mb-3 text-slate-900">Overview</h4>
+                      <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
+                      
+                      <h4 className="text-lg font-bold mb-3 text-slate-900">Challenge</h4>
+                      <p className="text-gray-700 leading-relaxed mb-6">{project.challenge}</p>
+                      
+                      <h4 className="text-lg font-bold mb-3 text-slate-900">Solution</h4>
+                      <p className="text-gray-700 leading-relaxed">{project.solution}</p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-lg font-bold mb-4 text-slate-900">Key Highlights</h4>
+                      <div className="space-y-4">
+                        {project.highlights.map((highlight, i) => (
+                          <div key={i} className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                            <h5 className="font-semibold text-slate-900 mb-2">{highlight.title}</h5>
+                            <p className="text-sm text-gray-600 leading-relaxed">{highlight.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-gray-50 rounded-xl border border-gray-200 mb-6">
+                    <h4 className="text-lg font-bold mb-3 text-slate-900">Business Impact</h4>
+                    <p className="text-gray-700 leading-relaxed">{project.impact}</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-600 mb-3 uppercase tracking-wider">Technologies Used</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {project.skills.map((skill, i) => (
+                        <span key={i} className="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Expertise</span>
+            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
+              Technical Skills
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive toolkit for end-to-end data analytics and business intelligence
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {Object.entries(skills).map(([category, data], index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+                <div className="flex items-center mb-6">
+                  {data.icon}
+                  <h3 className="text-2xl font-bold ml-3 text-slate-900">{category}</h3>
+                </div>
+                <div className="space-y-5">
+                  {data.items.map((skill, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between items-center mb-2">
+                        <div>
+                          <span className="font-semibold text-slate-900">{skill.name}</span>
+                          <span className="text-sm text-gray-500 ml-2">• {skill.desc}</span>
+                        </div>
+                        <span className="text-sm font-semibold text-slate-700">{skill.level}%</span>
+                      </div>
+                      <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-slate-900 rounded-full transition-all duration-1000"
+                          style={{ width: `${skill.level}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+            <h3 className="text-2xl font-bold mb-6 text-slate-900 flex items-center">
+              <Award className="text-slate-700 mr-3" size={28} />
+              Certifications & Training
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {certifications.map((cert, index) => (
+                <div key={index} className="p-5 bg-gray-50 rounded-xl border border-gray-200">
+                  <h4 className="font-semibold text-slate-900 mb-2">{cert.name}</h4>
+                  <p className="text-sm text-gray-600 mb-1">{cert.issuer}</p>
+                  <p className="text-xs text-slate-700 font-semibold">{cert.year}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-24 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-slate-700 font-semibold text-sm uppercase tracking-wider">Academic Background</span>
+            <h2 className="text-5xl font-bold mt-3 mb-6 text-slate-900">
+              Education
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {education.map((edu, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-200">
+                <div className="bg-slate-900 p-6 text-white rounded-t-2xl">
+                  <div className="flex items-start justify-between">
+                    <div className="flex items-start space-x-4 flex-1">
+                      <GraduationCap size={36} className="flex-shrink-0 mt-1" />
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold mb-2">{edu.degree}</h3>
+                        <p className="text-lg font-semibold text-gray-300 mb-1">{edu.institution}</p>
+                        {edu.board && <p className="text-sm text-gray-400 mb-2">{edu.board}</p>}
+                        <div className="flex flex-wrap gap-3 text-sm">
+                          <span className="flex items-center space-x-1">
+                            <MapPin size={14} />
+                            <span>{edu.location}</span>
+                          </span>
+                          <span className="flex items-center space-x-1">
+                            <Calendar size={14} />
+                            <span>{edu.period}</span>
+                          </span>
+                          <span className="bg-white/10 px-3 py-1 rounded-lg font-medium">
+                            {edu.type}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right ml-4">
+                      <div className="text-3xl font-bold">{edu.cgpa}</div>
+                      <div className="text-sm text-gray-300">{edu.grade}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <ul className="space-y-2">
+                    {edu.highlights.map((highlight, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircle className="text-slate-700 mr-3 mt-0.5 flex-shrink-0" size={18} />
+                        <span className="text-gray-700">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-slate-900 text-white">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <h2 className="text-5xl font-bold mb-6">Let's Create Something Amazing</h2>
+          <p className="text-xl mb-4 text-gray-300">
+            Ready to turn your data into actionable insights?
+          </p>
+          <p className="text-lg mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            I'm currently open to full-time opportunities, freelance projects, and collaborations. 
+            Let's discuss how data analytics can drive your business forward.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-3xl mx-auto">
+            <a href="mailto:riyashah9095@gmail.com" 
+               className="bg-white/10 backdrop-blur-lg p-8 rounded-xl hover:bg-white hover:text-slate-900 transition-all border border-white/20">
+              <Mail className="mx-auto mb-4" size={36} />
+              <p className="font-semibold text-lg mb-1">Email Me</p>
+              <p className="text-sm opacity-90">riyashah9095@gmail.com</p>
+            </a>
+            <a href="tel:6265008937" 
+               className="bg-white/10 backdrop-blur-lg p-8 rounded-xl hover:bg-white hover:text-slate-900 transition-all border border-white/20">
+              <Phone className="mx-auto mb-4" size={36} />
+              <p className="font-semibold text-lg mb-1">Call Me</p>
+              <p className="text-sm opacity-90">+91 6265008937</p>
+            </a>
+          </div>
+
+          <div className="flex justify-center space-x-6">
+            {[
+              { icon: Linkedin, href: "https://linkedin.com/in/riya-shah-517883231", label: "LinkedIn" },
+              { icon: Github, href: "https://github.com/22f1000952", label: "GitHub" }
+            ].map((social, index) => (
+              <a 
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 backdrop-blur-lg p-5 rounded-full hover:bg-white hover:text-slate-900 transition-all border border-white/20"
+                aria-label={social.label}
+              >
+                <social.icon size={28} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-950 text-white py-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h3 className="text-2xl font-bold mb-2">Riya Shah</h3>
+              <p className="text-gray-400">Data Analytics Professional</p>
+            </div>
+            <div className="flex space-x-8">
+              <button onClick={() => scrollToSection('home')} className="text-gray-400 hover:text-white transition-colors">Home</button>
+              <button onClick={() => scrollToSection('projects')} className="text-gray-400 hover:text-white transition-colors">Projects</button>
+              <button onClick={() => scrollToSection('skills')} className="text-gray-400 hover:text-white transition-colors">Skills</button>
+              <button onClick={() => scrollToSection('contact')} className="text-gray-400 hover:text-white transition-colors">Contact</button>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>© 2024 Riya Shah. All rights reserved.</p>
+            <p className="text-sm mt-2">Built with React & Tailwind CSS</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
