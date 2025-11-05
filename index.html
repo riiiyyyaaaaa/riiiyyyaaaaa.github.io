@@ -807,43 +807,41 @@
         }
 
         .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 900px;
-            margin: 0 auto 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .contact-card {
+            width: 60px;
+            height: 60px;
             background: rgba(255,255,255,0.1);
-            padding: 30px;
-            border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
             transition: all 0.3s;
             text-decoration: none;
-            color: white;
-            display: block;
         }
 
         .contact-card:hover {
             background: white;
             color: #0f172a;
-            transform: translateY(-5px);
+            transform: scale(1.1);
         }
 
         .contact-card .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .contact-card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
+        .contact-card-title,
         .contact-card-text {
-            font-size: 0.9rem;
+            display: none;
         }
 
         .contact-social {
@@ -1020,7 +1018,7 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">About Me</span>
-                <h2 class="section-title">Turning Data Into Decisions</h2>
+                <h2 class="section-title">Turning Data Into Insights</h2>
                 <p class="section-desc">
                     A data analytics professional passionate about uncovering insights that drive business growth
                 </p>
@@ -1755,23 +1753,16 @@
             </p>
 
             <div class="contact-grid">
-                <a href="mailto:riyashah9095@gmail.com" class="contact-card">
-                    <div class="contact-icon">✉️</div>
-                    <p class="contact-card-title">Email Me</p>
-                    <p class="contact-card-text">riyashah9095@gmail.com</p>
+                <a href="mailto:riyashah9095@gmail.com" class="contact-card" title="Email">
+                    <i class="fas fa-envelope"></i>
                 </a>
-                <a href="tel:6265008937" class="contact-card">
-                    <div class="contact-icon">📞</div>
-                    <p class="contact-card-title">Call Me</p>
-                    <p class="contact-card-text">+91 6265008937</p>
+                <a href="tel:6265008937" class="contact-card" title="Phone">
+                    <i class="fas fa-phone"></i>
                 </a>
-            </div>
-
-            <div class="contact-social">
-                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="contact-social-link" title="LinkedIn">
+                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="contact-card" title="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://github.com/22f1000952" target="_blank" class="contact-social-link" title="GitHub">
+                <a href="https://github.com/22f1000952" target="_blank" class="contact-card" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
             </div>
