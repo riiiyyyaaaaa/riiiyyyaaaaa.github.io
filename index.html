@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Riya Shah - Data Analytics Professional specializing in Power BI, Excel, and SQL">
     <title>Riya Shah - Data Analytics Professional</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -26,7 +26,6 @@
             padding: 0 20px;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -93,7 +92,6 @@
             color: white;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             background: #0f172a;
@@ -210,7 +208,6 @@
             transform: scale(1.1);
         }
 
-        /* Section Styles */
         section {
             padding: 80px 20px;
         }
@@ -242,7 +239,6 @@
             margin: 0 auto;
         }
 
-        /* About Section */
         .about {
             background: #f8fafc;
         }
@@ -287,7 +283,7 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.15);
         }
 
-        .about-card i {
+        .about-card .card-icon {
             font-size: 2.5rem;
             color: #334155;
             margin-bottom: 15px;
@@ -312,7 +308,6 @@
             font-size: 0.9rem;
         }
 
-        /* Experience Section */
         .exp-card {
             background: white;
             border-radius: 12px;
@@ -385,7 +380,7 @@
             border: 1px solid #e2e8f0;
         }
 
-        .resp-item i {
+        .resp-item .resp-icon {
             color: #334155;
             font-size: 1.2rem;
             margin-top: 3px;
@@ -429,11 +424,6 @@
             gap: 10px;
         }
 
-        .ach-item i {
-            color: #334155;
-        }
-
-        /* Projects Section */
         .projects {
             background: #f8fafc;
         }
@@ -562,7 +552,6 @@
             font-weight: 500;
         }
 
-        /* Skills Section */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -585,7 +574,7 @@
             margin-bottom: 25px;
         }
 
-        .skill-cat-header i {
+        .skill-cat-header .skill-cat-icon {
             font-size: 1.8rem;
             color: #334155;
         }
@@ -684,7 +673,6 @@
             color: #334155;
         }
 
-        /* Education Section */
         .education {
             background: #f8fafc;
         }
@@ -718,7 +706,7 @@
             margin-bottom: 8px;
         }
 
-        .edu-title i {
+        .edu-title .edu-icon {
             font-size: 1.8rem;
         }
 
@@ -788,12 +776,11 @@
             color: #334155;
         }
 
-        .edu-highlights i {
+        .edu-highlights .edu-check {
             color: #334155;
             margin-top: 3px;
         }
 
-        /* Contact Section */
         .contact {
             background: #0f172a;
             color: white;
@@ -835,6 +822,7 @@
             transition: all 0.3s;
             text-decoration: none;
             color: white;
+            display: block;
         }
 
         .contact-card:hover {
@@ -843,7 +831,7 @@
             transform: translateY(-5px);
         }
 
-        .contact-card i {
+        .contact-card .contact-icon {
             font-size: 2rem;
             margin-bottom: 15px;
         }
@@ -885,7 +873,6 @@
             transform: scale(1.1);
         }
 
-        /* Footer */
         footer {
             background: #020617;
             color: white;
@@ -941,7 +928,6 @@
             margin-bottom: 8px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -999,7 +985,7 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-badge">Available for Opportunities</div>
+            <div class="hero-badge">✨ Available for Opportunities</div>
             <h1>Riya Shah</h1>
             <h2>Data Analytics Professional</h2>
             <p class="hero-desc">Transforming Complex Data into Strategic Business Insights</p>
@@ -1014,16 +1000,16 @@
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
             <div class="social-links">
-                <a href="mailto:riyashah9095@gmail.com" class="social-link">
+                <a href="mailto:riyashah9095@gmail.com" class="social-link" title="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="social-link">
+                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="social-link" title="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://github.com/22f1000952" target="_blank" class="social-link">
+                <a href="https://github.com/22f1000952" target="_blank" class="social-link" title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="tel:6265008937" class="social-link">
+                <a href="tel:6265008937" class="social-link" title="Phone">
                     <i class="fas fa-phone"></i>
                 </a>
             </div>
@@ -1059,140 +1045,19 @@
 
             <div class="about-cards">
                 <div class="about-card">
-                    <i class="fas fa-bullseye"></i>
+                    <div class="card-icon">🎯</div>
                     <h3>Business Intelligence</h3>
                     <p>Creating interactive dashboards and reports that provide real-time visibility into business metrics and KPIs</p>
-                    <div class="edu-grade">
-                        <div class="edu-cgpa">7.6</div>
-                        <div class="edu-grade-text">CGPA</div>
-                        <div class="edu-grade-text">First Class</div>
-                    </div>
-                </div>
-                <div class="edu-body">
-                    <ul class="edu-highlights">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Strong foundation in mathematics and analytical subjects</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Developed problem-solving and logical reasoning skills</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Let's Create Something Amazing</h2>
-            </div>
-            <p class="contact-desc">Ready to turn your data into actionable insights?</p>
-            <p class="contact-text">
-                I'm currently open to full-time opportunities, freelance projects, and collaborations. 
-                Let's discuss how data analytics can drive your business forward.
-            </p>
-
-            <div class="contact-grid">
-                <a href="mailto:riyashah9095@gmail.com" class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <p class="contact-card-title">Email Me</p>
-                    <p class="contact-card-text">riyashah9095@gmail.com</p>
-                </a>
-                <a href="tel:6265008937" class="contact-card">
-                    <i class="fas fa-phone"></i>
-                    <p class="contact-card-title">Call Me</p>
-                    <p class="contact-card-text">+91 6265008937</p>
-                </a>
-            </div>
-
-            <div class="contact-social">
-                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="contact-social-link">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://github.com/22f1000952" target="_blank" class="contact-social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <h3>Riya Shah</h3>
-                    <p>Data Analytics Professional</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Riya Shah. All rights reserved.</p>
-                <p>Built with HTML, CSS and JavaScript</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        var navbar = document.getElementById('navbar');
-        var navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            var current = '';
-            var sections = document.querySelectorAll('section');
-            
-            sections.forEach(function(section) {
-                var sectionTop = section.offsetTop;
-                if (window.pageYOffset >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(function(link) {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                var target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html> class="card-metric">4+ Projects Delivered</div>
+                    <div class="card-metric">4+ Projects Delivered</div>
                 </div>
                 <div class="about-card">
-                    <i class="fas fa-chart-line"></i>
+                    <div class="card-icon">📈</div>
                     <h3>Data Analytics</h3>
                     <p>Applying statistical methods and machine learning to uncover patterns, trends, and predictive insights</p>
                     <div class="card-metric">85% Forecast Accuracy</div>
                 </div>
                 <div class="about-card">
-                    <i class="fas fa-bolt"></i>
+                    <div class="card-icon">⚡</div>
                     <h3>Process Optimization</h3>
                     <p>Streamlining workflows through automation and data-driven process improvements</p>
                     <div class="card-metric">40% Efficiency Gains</div>
@@ -1216,9 +1081,9 @@
                     </div>
                     <p class="exp-company">Internship Cell IIT Madras</p>
                     <div class="exp-meta">
-                        <span><i class="fas fa-calendar"></i> Oct 2024 - May 2025</span>
+                        <span><i class="far fa-calendar"></i> Oct 2024 - May 2025</span>
                         <span><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</span>
-                        <span><i class="fas fa-briefcase"></i> Full-time Internship</span>
+                        <span><i class="far fa-clock"></i> Full-time Internship</span>
                     </div>
                     <p class="exp-desc">
                         Leading data operations and analytics initiatives for student onboarding processes at one of India's premier institutions.
@@ -1227,35 +1092,35 @@
                 <div class="exp-body">
                     <h4>Key Responsibilities and Impact</h4>
                     <div class="resp-item">
-                        <i class="fas fa-database"></i>
+                        <div class="resp-icon">💾</div>
                         <div class="resp-content">
                             <h5>Database Management and ERP Systems</h5>
                             <p>Maintained and updated comprehensive student databases using MS Excel and internal ERP systems, ensuring data accuracy and integrity across 500+ student records</p>
                         </div>
                     </div>
                     <div class="resp-item">
-                        <i class="fas fa-bolt"></i>
+                        <div class="resp-icon">⚡</div>
                         <div class="resp-content">
                             <h5>Process Optimization and IT Coordination</h5>
                             <p>Collaborated with IT department to streamline student onboarding workflows, reducing processing time by 30% through automation and system improvements</p>
                         </div>
                     </div>
                     <div class="resp-item">
-                        <i class="fas fa-users"></i>
+                        <div class="resp-icon">👥</div>
                         <div class="resp-content">
                             <h5>CRM Implementation and Management</h5>
                             <p>Utilized CRM tools to track, manage, and analyze student queries and follow-ups, improving response time by 45% and increasing satisfaction rates</p>
                         </div>
                     </div>
                     <div class="resp-item">
-                        <i class="fas fa-check-circle"></i>
+                        <div class="resp-icon">✅</div>
                         <div class="resp-content">
                             <h5>Data Privacy and Compliance</h5>
                             <p>Monitored compliance with data privacy standards during document verification and record management, ensuring 100% adherence to institutional policies</p>
                         </div>
                     </div>
                     <div class="resp-item">
-                        <i class="fas fa-file-alt"></i>
+                        <div class="resp-icon">📊</div>
                         <div class="resp-content">
                             <h5>Analytics and Reporting</h5>
                             <p>Generated and analyzed periodic reports on student onboarding metrics using advanced Excel, providing actionable insights that improved process efficiency by 25%</p>
@@ -1300,7 +1165,7 @@
 
             <div class="project-card">
                 <div class="project-header">
-                    <h3>Call Center Dashboard</h3>
+                    <h3>📊 Call Center Dashboard</h3>
                     <p class="project-subtitle">Excel and Power Query Analytics</p>
                     <p class="project-tech">Excel • Power Query • Pivot Tables • VBA</p>
                     <div class="project-metrics">
@@ -1359,7 +1224,7 @@
 
             <div class="project-card">
                 <div class="project-header">
-                    <h3>Farmers Market Dashboard</h3>
+                    <h3>🌾 Farmers Market Dashboard</h3>
                     <p class="project-subtitle">Multi-Page Power BI Solution</p>
                     <p class="project-tech">Power BI • DAX • Power Query • Data Modeling</p>
                     <div class="project-metrics">
@@ -1418,7 +1283,7 @@
 
             <div class="project-card">
                 <div class="project-header">
-                    <h3>Superstore Sales Analysis</h3>
+                    <h3>🛒 Superstore Sales Analysis</h3>
                     <p class="project-subtitle">Enterprise BI Solution</p>
                     <p class="project-tech">Power BI • SQL • DAX • Advanced Analytics</p>
                     <div class="project-metrics">
@@ -1477,7 +1342,7 @@
 
             <div class="project-card">
                 <div class="project-header">
-                    <h3>Sales and Inventory Optimization</h3>
+                    <h3>📈 Sales and Inventory Optimization</h3>
                     <p class="project-subtitle">Predictive Analytics and Forecasting</p>
                     <p class="project-tech">Python • ARIMA • Statistical Modeling • ML</p>
                     <div class="project-metrics">
@@ -1549,14 +1414,14 @@
             <div class="skills-grid">
                 <div class="skill-cat">
                     <div class="skill-cat-header">
-                        <i class="fas fa-code"></i>
+                        <div class="skill-cat-icon">💻</div>
                         <h3>Programming and Databases</h3>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Python</span>
-                                <span class="skill-desc">Data analysis, automation, ML</span>
+                                <span class="skill-desc">• Data analysis, automation, ML</span>
                             </div>
                             <span class="skill-percent">85%</span>
                         </div>
@@ -1566,7 +1431,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">SQL (MySQL)</span>
-                                <span class="skill-desc">Complex queries, optimization</span>
+                                <span class="skill-desc">• Complex queries, optimization</span>
                             </div>
                             <span class="skill-percent">80%</span>
                         </div>
@@ -1576,7 +1441,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">JavaScript</span>
-                                <span class="skill-desc">Interactive visualizations</span>
+                                <span class="skill-desc">• Interactive visualizations</span>
                             </div>
                             <span class="skill-percent">75%</span>
                         </div>
@@ -1586,7 +1451,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Java</span>
-                                <span class="skill-desc">Object-oriented programming</span>
+                                <span class="skill-desc">• Object-oriented programming</span>
                             </div>
                             <span class="skill-percent">70%</span>
                         </div>
@@ -1596,14 +1461,14 @@
 
                 <div class="skill-cat">
                     <div class="skill-cat-header">
-                        <i class="fas fa-chart-bar"></i>
+                        <div class="skill-cat-icon">📊</div>
                         <h3>Data Visualization</h3>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Power BI</span>
-                                <span class="skill-desc">DAX, complex dashboards</span>
+                                <span class="skill-desc">• DAX, complex dashboards</span>
                             </div>
                             <span class="skill-percent">90%</span>
                         </div>
@@ -1613,7 +1478,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Tableau</span>
-                                <span class="skill-desc">Interactive storytelling</span>
+                                <span class="skill-desc">• Interactive storytelling</span>
                             </div>
                             <span class="skill-percent">75%</span>
                         </div>
@@ -1623,7 +1488,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Advanced Excel</span>
-                                <span class="skill-desc">Power Query, Pivot Tables</span>
+                                <span class="skill-desc">• Power Query, Pivot Tables</span>
                             </div>
                             <span class="skill-percent">95%</span>
                         </div>
@@ -1633,7 +1498,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Matplotlib/Seaborn</span>
-                                <span class="skill-desc">Python visualization</span>
+                                <span class="skill-desc">• Python visualization</span>
                             </div>
                             <span class="skill-percent">80%</span>
                         </div>
@@ -1643,14 +1508,14 @@
 
                 <div class="skill-cat">
                     <div class="skill-cat-header">
-                        <i class="fas fa-database"></i>
+                        <div class="skill-cat-icon">🔧</div>
                         <h3>Analytics and Tools</h3>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Power Query</span>
-                                <span class="skill-desc">Data transformation, ETL</span>
+                                <span class="skill-desc">• Data transformation, ETL</span>
                             </div>
                             <span class="skill-percent">90%</span>
                         </div>
@@ -1660,7 +1525,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Power Pivot</span>
-                                <span class="skill-desc">Data modeling</span>
+                                <span class="skill-desc">• Data modeling</span>
                             </div>
                             <span class="skill-percent">85%</span>
                         </div>
@@ -1670,7 +1535,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Statistical Analysis</span>
-                                <span class="skill-desc">ARIMA, forecasting</span>
+                                <span class="skill-desc">• ARIMA, forecasting</span>
                             </div>
                             <span class="skill-percent">80%</span>
                         </div>
@@ -1680,7 +1545,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">CRM Systems</span>
-                                <span class="skill-desc">Data management</span>
+                                <span class="skill-desc">• Data management</span>
                             </div>
                             <span class="skill-percent">75%</span>
                         </div>
@@ -1690,14 +1555,14 @@
 
                 <div class="skill-cat">
                     <div class="skill-cat-header">
-                        <i class="fas fa-bolt"></i>
+                        <div class="skill-cat-icon">⚡</div>
                         <h3>Additional Skills</h3>
                     </div>
                     <div class="skill-item">
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Git/GitHub</span>
-                                <span class="skill-desc">Version control</span>
+                                <span class="skill-desc">• Version control</span>
                             </div>
                             <span class="skill-percent">80%</span>
                         </div>
@@ -1707,7 +1572,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Agile Methodology</span>
-                                <span class="skill-desc">Project management</span>
+                                <span class="skill-desc">• Project management</span>
                             </div>
                             <span class="skill-percent">75%</span>
                         </div>
@@ -1717,7 +1582,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Business Intelligence</span>
-                                <span class="skill-desc">Strategic insights</span>
+                                <span class="skill-desc">• Strategic insights</span>
                             </div>
                             <span class="skill-percent">85%</span>
                         </div>
@@ -1727,7 +1592,7 @@
                         <div class="skill-info">
                             <div>
                                 <span class="skill-name">Data Storytelling</span>
-                                <span class="skill-desc">Clear communication</span>
+                                <span class="skill-desc">• Clear communication</span>
                             </div>
                             <span class="skill-percent">88%</span>
                         </div>
@@ -1770,13 +1635,13 @@
                 <div class="edu-header">
                     <div class="edu-info">
                         <div class="edu-title">
-                            <i class="fas fa-graduation-cap"></i>
+                            <div class="edu-icon">🎓</div>
                             <h3>Bachelor of Science in Data Science and Programming</h3>
                         </div>
                         <p class="edu-institution">Indian Institute of Technology Madras</p>
                         <div class="edu-details">
                             <span><i class="fas fa-map-marker-alt"></i> Tamil Nadu, India</span>
-                            <span><i class="fas fa-calendar"></i> 2022 - 2025</span>
+                            <span><i class="far fa-calendar"></i> 2022 - 2025</span>
                             <span class="edu-type">Full-time</span>
                         </div>
                     </div>
@@ -1789,15 +1654,15 @@
                 <div class="edu-body">
                     <ul class="edu-highlights">
                         <li>
-                            <i class="fas fa-check-circle"></i>
+                            <div class="edu-check">✓</div>
                             <span>Specialization in Data Science, Machine Learning, and Statistical Analysis</span>
                         </li>
                         <li>
-                            <i class="fas fa-check-circle"></i>
+                            <div class="edu-check">✓</div>
                             <span>Completed projects in predictive modeling, data visualization, and business analytics</span>
                         </li>
                         <li>
-                            <i class="fas fa-check-circle"></i>
+                            <div class="edu-check">✓</div>
                             <span>Relevant coursework: Statistics, Database Systems, Machine Learning, Data Structures</span>
                         </li>
                     </ul>
@@ -1808,13 +1673,13 @@
                 <div class="edu-header">
                     <div class="edu-info">
                         <div class="edu-title">
-                            <i class="fas fa-graduation-cap"></i>
+                            <div class="edu-icon">🎓</div>
                             <h3>Bachelor of Arts</h3>
                         </div>
                         <p class="edu-institution">Eklavya University</p>
                         <div class="edu-details">
                             <span><i class="fas fa-map-marker-alt"></i> Madhya Pradesh, India</span>
-                            <span><i class="fas fa-calendar"></i> 2020 - 2023</span>
+                            <span><i class="far fa-calendar"></i> 2020 - 2023</span>
                             <span class="edu-type">Full-time</span>
                         </div>
                     </div>
@@ -1827,15 +1692,15 @@
                 <div class="edu-body">
                     <ul class="edu-highlights">
                         <li>
-                            <i class="fas fa-check-circle"></i>
+                            <div class="edu-check">✓</div>
                             <span>Graduated with distinction, demonstrating strong academic performance</span>
                         </li>
                         <li>
-                            <i class="fas fa-check-circle"></i>
+                            <div class="edu-check">✓</div>
                             <span>Developed analytical and critical thinking skills through diverse coursework</span>
                         </li>
                         <li>
-                            <i class="fas fa-check-circle"></i>
+                            <div class="edu-check">✓</div>
                             <span>Active participation in academic seminars and research activities</span>
                         </li>
                     </ul>
@@ -1846,14 +1711,135 @@
                 <div class="edu-header">
                     <div class="edu-info">
                         <div class="edu-title">
-                            <i class="fas fa-graduation-cap"></i>
+                            <div class="edu-icon">🎓</div>
                             <h3>Senior Secondary (12th Class)</h3>
                         </div>
                         <p class="edu-institution">Gyanodaya Vidya Mandir, Narsinghgarh</p>
                         <p class="edu-board">Central Board of Secondary Education (CBSE)</p>
                         <div class="edu-details">
                             <span><i class="fas fa-map-marker-alt"></i> Madhya Pradesh, India</span>
-                            <span><i class="fas fa-calendar"></i> 2019 - 2020</span>
+                            <span><i class="far fa-calendar"></i> 2019 - 2020</span>
                         </div>
                     </div>
-                    <div
+                    <div class="edu-grade">
+                        <div class="edu-cgpa">7.6</div>
+                        <div class="edu-grade-text">CGPA</div>
+                        <div class="edu-grade-text">First Class</div>
+                    </div>
+                </div>
+                <div class="edu-body">
+                    <ul class="edu-highlights">
+                        <li>
+                            <div class="edu-check">✓</div>
+                            <span>Strong foundation in mathematics and analytical subjects</span>
+                        </li>
+                        <li>
+                            <div class="edu-check">✓</div>
+                            <span>Developed problem-solving and logical reasoning skills</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Create Something Amazing</h2>
+            </div>
+            <p class="contact-desc">Ready to turn your data into actionable insights?</p>
+            <p class="contact-text">
+                I'm currently open to full-time opportunities, freelance projects, and collaborations. 
+                Let's discuss how data analytics can drive your business forward.
+            </p>
+
+            <div class="contact-grid">
+                <a href="mailto:riyashah9095@gmail.com" class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <p class="contact-card-title">Email Me</p>
+                    <p class="contact-card-text">riyashah9095@gmail.com</p>
+                </a>
+                <a href="tel:6265008937" class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <p class="contact-card-title">Call Me</p>
+                    <p class="contact-card-text">+91 6265008937</p>
+                </a>
+            </div>
+
+            <div class="contact-social">
+                <a href="https://linkedin.com/in/riya-shah-517883231" target="_blank" class="contact-social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/22f1000952" target="_blank" class="contact-social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>Riya Shah</h3>
+                    <p>Data Analytics Professional</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Riya Shah. All rights reserved.</p>
+                <p>Built with HTML, CSS and JavaScript</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        var navbar = document.getElementById('navbar');
+        var navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            var current = '';
+            var sections = document.querySelectorAll('section');
+            
+            sections.forEach(function(section) {
+                var sectionTop = section.offsetTop;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
